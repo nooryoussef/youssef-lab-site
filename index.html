@@ -1,0 +1,649 @@
+<title>Youssef Lab</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@400;500;600&display=swap');
+
+  :root {
+    --paper: #FFFFFF;
+    --paper-alt: #F8F7FB;
+    --paper-raised: #FFFFFF;
+    --ink: #26212F;
+    --ink-soft: #5C5568;
+    --ink-faint: #948C9E;
+    --rule: #DCD5E6;
+    --gold: #A97A2E;
+    --gold-soft: #C79A52;
+    --sage: #5E7A5B;
+    --sage-soft: #8AA487;
+    --shadow: 0 1px 3px rgba(38,33,47,0.05), 0 10px 30px rgba(38,33,47,0.06);
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 { font-family: "Fraunces", Georgia, serif; text-wrap: balance; margin: 0; font-weight: 500; }
+  em { font-style: italic; color: var(--gold); }
+
+  .eyebrow {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--sage);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 1rem;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: var(--gold);
+    display: inline-block;
+  }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 clamp(1.25rem, 4vw, 2.75rem);
+  }
+
+  a { color: inherit; }
+
+  /* ---------- nav ---------- */
+  header.site {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem clamp(1.25rem, 4vw, 2.75rem);
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+  .brand {
+    font-family: "Fraunces", serif;
+    font-weight: 500;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+  }
+  .brand .tag {
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  nav.links { display: flex; gap: clamp(1.1rem, 2.5vw, 2rem); font-size: 0.93rem; }
+  nav.links a { text-decoration: none; color: var(--ink-soft); padding: 0.2rem 0; }
+  nav.links a:hover { color: var(--gold); }
+  nav.links a:focus-visible, a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  @media (max-width: 720px) {
+    nav.links {
+      position: absolute; top: 100%; left: 0; right: 0;
+      flex-direction: column;
+      background: var(--paper-raised);
+      border-bottom: 1px solid var(--rule);
+      padding: 1rem clamp(1.25rem, 4vw, 2.75rem) 1.5rem;
+      gap: 1rem;
+      display: none;
+    }
+    nav.links.open { display: flex; }
+    .nav-toggle { display: inline-block; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero { position: relative; overflow: hidden; }
+  .hero .wrap {
+    position: relative;
+    z-index: 2;
+    padding-top: clamp(4.5rem, 11vw, 7rem);
+    padding-bottom: clamp(4.5rem, 10vw, 7rem);
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+    line-height: 1.15;
+    max-width: 26ch;
+  }
+  .hero p.lede {
+    margin-top: 1.7rem;
+    max-width: 52ch;
+    font-size: clamp(1.08rem, 1.6vw, 1.25rem);
+    color: var(--ink-soft);
+  }
+  .badge {
+    margin-top: 2.3rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    border: 1px solid var(--rule);
+    background: var(--paper-raised);
+    padding: 0.55rem 1.1rem;
+    border-radius: 999px;
+  }
+  .badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+
+  .net-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* ---------- sections ---------- */
+  section { padding: clamp(4rem, 9vw, 6.5rem) 0; }
+  .section-head { max-width: 60ch; margin-bottom: clamp(2.2rem, 5vw, 3.2rem); }
+  .section-head h2 { font-size: clamp(1.8rem, 3.1vw, 2.4rem); }
+  .section-head p { margin-top: 1rem; color: var(--ink-soft); font-size: 1.04rem; max-width: 56ch; }
+
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+  .grid-3 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.75rem; }
+  @media (max-width: 860px) { .grid-3 { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    padding: 2rem 1.8rem;
+    box-shadow: var(--shadow);
+  }
+  .card h3 { font-size: 1.28rem; }
+  .card p { margin-top: 0.7rem; color: var(--ink-soft); font-size: 0.97rem; }
+
+  .tags { margin-top: 2.8rem; display: flex; flex-wrap: wrap; gap: 0.65rem; }
+  .tag {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--sage);
+    background: color-mix(in srgb, var(--sage) 12%, var(--paper-raised));
+    padding: 0.45rem 0.95rem;
+    border-radius: 999px;
+  }
+
+  .people-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.75rem; }
+  @media (max-width: 860px) { .people-grid { grid-template-columns: 1fr; } }
+
+  .pi-card {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    padding: 2.4rem;
+    box-shadow: var(--shadow);
+  }
+  .pi-card .role { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--gold); }
+  .pi-card h3 { margin-top: 0.6rem; font-size: 1.6rem; }
+  .pi-card .affil { color: var(--ink-faint); font-size: 0.92rem; margin-top: 0.25rem; }
+  .pi-card .bio { margin-top: 1.1rem; color: var(--ink-soft); font-size: 0.97rem; }
+
+  .placeholder-card {
+    border: 1.5px dashed var(--rule);
+    border-radius: 16px;
+    padding: 2.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--ink-faint);
+    font-size: 0.96rem;
+    background: color-mix(in srgb, var(--paper-alt) 55%, transparent);
+  }
+  .placeholder-card .ph-title { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.7rem; }
+  .placeholder-card em { color: var(--ink-soft); font-style: italic; }
+
+  .join-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.75rem; }
+  @media (max-width: 860px) { .join-grid { grid-template-columns: 1fr; } }
+  .join-grid h3 { font-family: "Fraunces", serif; font-size: 1.2rem; font-weight: 500; color: var(--ink); margin-bottom: 0.9rem; }
+  ul.plain { list-style: none; margin: 0; padding: 0; }
+  ul.plain li { padding: 0.6rem 0; border-bottom: 1px solid var(--rule); color: var(--ink-soft); font-size: 0.97rem; }
+  ul.plain li:last-child { border-bottom: none; }
+  ul.plain li strong { color: var(--ink); font-weight: 600; }
+
+  .cta-row { margin-top: 2rem; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--ink);
+    color: var(--paper);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 999px;
+    text-decoration: none;
+    border: 1px solid var(--ink);
+  }
+  .btn:hover { opacity: 0.88; }
+
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
+  @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-card {
+    border: 1.5px dashed var(--rule);
+    border-radius: 16px;
+    padding: 1.8rem;
+    background: color-mix(in srgb, var(--paper-alt) 55%, transparent);
+  }
+  .contact-card .k { font-size: 0.76rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); }
+  .contact-card .v { margin-top: 0.55rem; color: var(--ink-soft); font-size: 0.96rem; }
+  .contact-card em { color: var(--ink-soft); font-style: italic; }
+  .contact-card--filled {
+    border: 1px solid var(--rule);
+    background: var(--paper-raised);
+    box-shadow: var(--shadow);
+  }
+  .inline-link { color: var(--gold); text-decoration: underline; text-underline-offset: 2px; }
+  .inline-link:hover { color: var(--gold-soft); }
+
+  .pub-list { list-style: none; margin: clamp(1.5rem, 3vw, 2.2rem) 0 0; padding: 0; }
+  .pub-item { padding: 1.15rem 0; border-bottom: 1px solid var(--rule); }
+  .pub-item:first-child { padding-top: 0; }
+  .pub-item:last-child { border-bottom: none; }
+  .pub-title { font-family: "Fraunces", serif; font-weight: 500; font-size: 1.06rem; color: var(--ink); text-wrap: balance; }
+  .pub-meta { margin-top: 0.4rem; color: var(--ink-soft); font-size: 0.88rem; line-height: 1.55; }
+  .pub-meta strong { color: var(--ink); font-weight: 600; }
+  .pub-venue { font-style: italic; }
+  .pub-year { color: var(--ink-faint); }
+
+  .diagram {
+    margin: clamp(2.2rem, 5vw, 3rem) 0 clamp(2.2rem, 5vw, 3rem);
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 20px;
+    padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1.25rem, 3.5vw, 2.5rem) clamp(1.5rem, 3vw, 2rem);
+    box-shadow: var(--shadow);
+  }
+  .diagram-svg { width: 100%; height: auto; display: block; }
+  .diagram-svg text { font-family: "Work Sans", sans-serif; }
+  .diagram-arc-label {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 17px;
+  }
+  .diagram-arc-label--gold { fill: var(--gold); }
+  .diagram-arc-label--muted { fill: var(--ink-faint); }
+  .diagram-step-label { font-size: 12px; font-weight: 500; fill: var(--ink-soft); }
+  .diagram-node-label { font-size: 12.5px; font-weight: 600; fill: var(--ink); }
+  figcaption {
+    margin-top: 1.4rem;
+    color: var(--ink-soft);
+    font-size: 0.96rem;
+    max-width: 70ch;
+  }
+  .hl-gold { font-style: italic; color: var(--gold); }
+  .hl-muted { font-style: italic; color: var(--ink-faint); }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 2.2rem clamp(1.25rem, 4vw, 2.75rem);
+    color: var(--ink-faint);
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+</style>
+
+<header class="site">
+  <div class="nav">
+    <div class="brand">Youssef Lab <span class="tag">MoGen · U of T</span></div>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+    <nav class="links" id="navLinks">
+      <a href="#research">Research</a>
+      <a href="#people">People</a>
+      <a href="#publications">Publications</a>
+      <a href="#join">Join Us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <canvas class="net-canvas" id="netCanvas" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="eyebrow">Youssef Lab · Molecular Genetics · University of Toronto</div>
+    <h1>Computational and AI models to help us predict, prepare for, and prevent <em>viral outbreaks.</em></h1>
+    <p class="lede">We develop biology-first, AI-enabled approaches to address two fundamental questions in virology: (1) what are the molecular determinants of viral evolution, from initial spillover to chronic infections; and (2) how can we engineer vaccines that account for viral evolution and protect against existing and future strains?</p>
+  </div>
+</section>
+
+<section id="research" style="background:var(--paper-alt)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Research</div>
+      <h2>Biology-first AI for virology</h2>
+      <p>We work at the intersection of machine learning and evolutionary virology — building models that reason about how viral populations change over time, within a single host and across the globe.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="card reveal">
+        <h3>Predicting Viral Evolution</h3>
+        <p>Predicting how viruses evolve over time — from within-patient dynamics to long-term lineage forecasting to enable better treatments and preventions.</p>
+      </div>
+      <div class="card reveal">
+        <h3>Designing Broadly Protective Vaccines</h3>
+        <p>Using models of protein sequences and structures to guide the design of antigens and therapeutics that can hold up against future viral evolution, not just current strains.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="people">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">People</div>
+      <h2>Principal Investigator</h2>
+    </div>
+    <div class="people-grid">
+      <div class="pi-card reveal">
+        <h3>Dr. Noor Youssef</h3>
+        <div class="affil">Assistant Professor, Department of Molecular Genetics, University of Toronto</div>
+        <p class="bio">Noor received her PhD in Computational Biology and a BSc in Mathematics and Biology from Dalhousie University, and was previously Scientific Lead of Predictive Modelling at the Marks Lab, Harvard Medical School.</p>
+      </div>
+      <div class="placeholder-card reveal">
+        <div class="ph-title">Lab Members</div>
+        <p>The lab is just getting started at the University of Toronto. If you are interested in joining, contact Dr. Youssef (<a class="inline-link" href="mailto:n.youssef@utoronto.ca">n.youssef@utoronto.ca</a>).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="publications" style="background:var(--paper-alt)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Publications</div>
+      <h2>Publications</h2>
+      <p>A full and up-to-date list of publications is available on <a class="inline-link" href="https://scholar.google.com/citations?user=-IIZfrEAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>.</p>
+    </div>
+    <ul class="pub-list reveal">
+      <li class="pub-item">
+        <div class="pub-title">Machine learning reveals hidden dimensions of functional similarity</div>
+        <div class="pub-meta"><strong>Youssef N</strong>, Gurev S, Marks DS · <span class="pub-venue">PNAS (Invited Commentary)</span> · <span class="pub-year">2026</span></div>
+      </li>
+      <li class="pub-item">
+        <div class="pub-title">Variant effect prediction with reliability estimation across priority viruses</div>
+        <div class="pub-meta">Gurev S, <strong>Youssef N</strong> (co-first), Jain N, Marks DS · <span class="pub-venue">Nature Methods</span> · <span class="pub-year">2025</span></div>
+      </li>
+      <li class="pub-item">
+        <div class="pub-title">Computationally designed proteins mimic antibody immune evasion in viral evolution</div>
+        <div class="pub-meta"><strong>Youssef N</strong>, Gurev S, Ghantous F, Brock K, Jaimes JA, Dauphin A, Yurkovetskiy L, Soto D, Estanboulieh R, Kotzen B, Bosso M, Lemieux J, Luban J, Seaman MS, Marks DS · <span class="pub-venue">Immunity</span>, Vol. 58 · <span class="pub-year">2025</span></div>
+      </li>
+      <li class="pub-item">
+        <div class="pub-title">Deep mutational scanning of HBV reveals a mechanism for cis-preferential reverse transcription</div>
+        <div class="pub-meta">Yu Y, Kass MA, Zhang M, <strong>Youssef N</strong>, Freije CA, Brock KP, Seifert LL, Venkittu S, Hong X, Shlomai A, de Jong YP, Marks DS, Rice CM, Schneider WM · <span class="pub-venue">Cell</span>, Vol. 187 · <span class="pub-year">2024</span></div>
+      </li>
+      <li class="pub-item">
+        <div class="pub-title">Learning from pre-pandemic data to forecast viral antibody escape</div>
+        <div class="pub-meta">Thadani NT, Gurev S, Notin P, <strong>Youssef N</strong>, Rollins NJ, Sander CA, Gal Y, Marks D · <span class="pub-venue">Nature</span>, Vol. 622 · <span class="pub-year">2023</span></div>
+      </li>
+      <li class="pub-item">
+        <div class="pub-title">Evolution of amino acid propensities under stability-mediated epistasis</div>
+        <div class="pub-meta"><strong>Youssef N</strong>, Susko E, Roger A, Bielawski JP · <span class="pub-venue">Molecular Biology and Evolution</span>, Vol. 39(3) · <span class="pub-year">2022</span></div>
+      </li>
+      <li class="pub-item">
+        <div class="pub-title">Shifts in amino acid preferences as proteins evolve: a synthesis of experimental and theoretical work</div>
+        <div class="pub-meta"><strong>Youssef N</strong>, Susko E, Roger A, Bielawski JP · <span class="pub-venue">Protein Science</span>, Vol. 30(10) · <span class="pub-year">2021</span></div>
+      </li>
+      <li class="pub-item">
+        <div class="pub-title">Expanding the search for sperm transmission elements in the mitochondrial genomes of bivalve mollusks</div>
+        <div class="pub-meta">Stewart DT, Robicheau BM, <strong>Youssef N</strong>, Garrido-Ramos MA, Chase EE, Breton S · <span class="pub-venue">Genes</span>, Vol. 12(8) · <span class="pub-year">2021</span></div>
+      </li>
+      <li class="pub-item">
+        <div class="pub-title">Consequences of stability-induced epistasis for substitution rates</div>
+        <div class="pub-meta"><strong>Youssef N</strong>, Susko E, Bielawski JP · <span class="pub-venue">Molecular Biology and Evolution</span>, Vol. 37(11) · <span class="pub-year">2020</span></div>
+      </li>
+      <li class="pub-item">
+        <div class="pub-title">A phenotype–genotype codon model for detecting adaptive evolution</div>
+        <div class="pub-meta">Jones CT, <strong>Youssef N</strong>, Susko E, Bielawski JP · <span class="pub-venue">Systematic Biology</span>, Vol. 69(4) · <span class="pub-year">2020</span></div>
+      </li>
+      <li class="pub-item">
+        <div class="pub-title">An unusual evolutionary strategy: the origins, genetic repertoire, and implications of doubly uniparental inheritance of mitochondrial DNA in bivalves</div>
+        <div class="pub-meta">Stewart DT, Breton S, Chase EE, Robicheau BM, Bettinazzi S, Pante E, <strong>Youssef N</strong>, Garrido-Ramos MA · <span class="pub-venue">Evolutionary Biology — A Transdisciplinary Approach (Springer)</span> · <span class="pub-year">2020</span></div>
+      </li>
+      <li class="pub-item">
+        <div class="pub-title">Introduction to genome biology and diversity</div>
+        <div class="pub-meta"><strong>Youssef N</strong>, Budd A, Bielawski JP · <span class="pub-venue">Evolutionary Genomics, Methods in Molecular Biology</span>, Vol. 1910 (Humana) · <span class="pub-year">2019</span></div>
+      </li>
+      <li class="pub-item">
+        <div class="pub-title">Phenomenological load on model parameters can lead to false biological conclusions</div>
+        <div class="pub-meta">Jones CT, <strong>Youssef N</strong>, Susko E, Bielawski JP · <span class="pub-venue">Molecular Biology and Evolution</span>, Vol. 35 · <span class="pub-year">2018</span></div>
+      </li>
+      <li class="pub-item">
+        <div class="pub-title">Shifting balance on a static mutation-selection landscape: a novel scenario of positive selection</div>
+        <div class="pub-meta">Jones CT, <strong>Youssef N</strong>, Susko E, Bielawski JP · <span class="pub-venue">Molecular Biology and Evolution</span>, Vol. 34 · <span class="pub-year">2017</span></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="join">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Join Us</div>
+      <h2>We're recruiting PhD and MSc students</h2>
+    </div>
+    <div class="cta-row reveal">
+      <a class="btn" href="#contact">Get in touch about openings →</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background:var(--paper-alt)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Contact</div>
+      <h2>Get in touch</h2>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-card contact-card--filled">
+        <div class="k">Email</div>
+        <div class="v"><a class="inline-link" href="mailto:n.youssef@utoronto.ca">n.youssef@utoronto.ca</a></div>
+      </div>
+      <div class="contact-card contact-card--filled">
+        <div class="k">Location</div>
+        <div class="v">1632 MaRS Centre, University of Toronto</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 Youssef Lab, Department of Molecular Genetics, University of Toronto</div>
+  <div>Draft site — v0.2</div>
+</footer>
+
+<script>
+  (function () {
+    var toggle = document.getElementById('navToggle');
+    var links = document.getElementById('navLinks');
+    if (toggle && links) {
+      toggle.addEventListener('click', function () {
+        var open = links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      links.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          links.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReduced && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    } else {
+      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible'); });
+    }
+
+    // ---------- viral particle network (hero background) ----------
+    var canvas = document.getElementById('netCanvas');
+    if (canvas && canvas.getContext) {
+      var ctx = canvas.getContext('2d');
+      var hero = canvas.closest('.hero');
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var particles = [];
+      var raf = null;
+      var reduced = prefersReduced;
+      var w = 0, h = 0;
+
+      function hexToRgb(hex) {
+        hex = (hex || '').trim().replace('#', '');
+        if (hex.length === 3) hex = hex.split('').map(function (c) { return c + c; }).join('');
+        var num = parseInt(hex, 16) || 0;
+        return { r: (num >> 16) & 255, g: (num >> 8) & 255, b: num & 255 };
+      }
+
+      function getColors() {
+        var styles = getComputedStyle(document.documentElement);
+        return {
+          gold: hexToRgb(styles.getPropertyValue('--gold') || '#A97A2E'),
+          sage: hexToRgb(styles.getPropertyValue('--sage') || '#5E7A5B'),
+          line: hexToRgb(styles.getPropertyValue('--ink-faint') || '#948C9E')
+        };
+      }
+      var colors = getColors();
+
+      function seedParticles() {
+        var density = (w * h) / 26000;
+        var count = Math.max(18, Math.min(60, Math.round(density)));
+        particles = [];
+        for (var i = 0; i < count; i++) {
+          particles.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            vx: (Math.random() - 0.5) * 0.18,
+            vy: (Math.random() - 0.5) * 0.18,
+            r: 2.2 + Math.random() * 3.2,
+            c: Math.random() > 0.5 ? colors.gold : colors.sage
+          });
+        }
+      }
+
+      function resize() {
+        var rect = hero.getBoundingClientRect();
+        w = rect.width;
+        h = rect.height;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        seedParticles();
+      }
+
+      function step() {
+        ctx.clearRect(0, 0, w, h);
+        var maxDist = Math.min(150, w / 5);
+        var i, j;
+
+        if (!reduced) {
+          for (i = 0; i < particles.length; i++) {
+            var p = particles[i];
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < -10) p.x = w + 10;
+            if (p.x > w + 10) p.x = -10;
+            if (p.y < -10) p.y = h + 10;
+            if (p.y > h + 10) p.y = -10;
+          }
+        }
+
+        for (i = 0; i < particles.length; i++) {
+          for (j = i + 1; j < particles.length; j++) {
+            var a = particles[i], b = particles[j];
+            var dx = a.x - b.x, dy = a.y - b.y;
+            var dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < maxDist) {
+              var alpha = (1 - dist / maxDist) * 0.35;
+              ctx.strokeStyle = 'rgba(' + colors.line.r + ',' + colors.line.g + ',' + colors.line.b + ',' + alpha + ')';
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        for (i = 0; i < particles.length; i++) {
+          var pt = particles[i];
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, pt.r, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(' + pt.c.r + ',' + pt.c.g + ',' + pt.c.b + ',0.55)';
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, pt.r * 0.35, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(' + pt.c.r + ',' + pt.c.g + ',' + pt.c.b + ',0.7)';
+          ctx.fill();
+        }
+
+        if (!reduced) raf = requestAnimationFrame(step);
+      }
+
+      resize();
+      step();
+      window.addEventListener('resize', resize);
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+          if (raf) cancelAnimationFrame(raf);
+        } else if (!reduced) {
+          raf = requestAnimationFrame(step);
+        }
+      });
+    }
+  })();
+</script>
