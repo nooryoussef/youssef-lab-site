@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Youssef Lab</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@400;500;600&display=swap');
@@ -42,8 +47,9 @@
     text-transform: uppercase;
     color: var(--sage);
     display: inline-flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 0.55rem;
+    gap: 0.4rem 0.55rem;
     margin-bottom: 1rem;
   }
   .eyebrow::before {
@@ -115,6 +121,9 @@
     color: var(--ink);
     cursor: pointer;
   }
+  @media (max-width: 480px) {
+    .brand .tag { display: none; }
+  }
   @media (max-width: 720px) {
     nav.links {
       position: absolute; top: 100%; left: 0; right: 0;
@@ -182,8 +191,9 @@
   .reveal.is-visible { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 
-  .grid-3 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.75rem; }
-  @media (max-width: 860px) { .grid-3 { grid-template-columns: 1fr; } }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+  @media (max-width: 980px) { .grid-3 { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 620px) { .grid-3 { grid-template-columns: 1fr; } }
 
   .card {
     background: var(--paper-raised);
@@ -338,7 +348,8 @@
     gap: 0.6rem;
   }
 </style>
-
+</head>
+<body>
 <header class="site">
   <div class="nav">
     <div class="brand">Youssef Lab <span class="tag">Molecular Genetics · U of T</span></div>
@@ -392,6 +403,19 @@
           <h3>Designing Broadly Protective Vaccines</h3>
         </div>
         <p>Using models of protein sequences and structures to guide the design of antigens and therapeutics that can hold up against future viral evolution, not just current strains.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-head">
+          <svg class="card-icon" viewBox="0 0 28 28" role="img" aria-label="Balance scale icon representing weighing risk against benefit">
+            <path d="M14 5 V21" style="stroke:var(--gold);stroke-width:1.6;stroke-linecap:round" />
+            <path d="M6 9 H22" style="stroke:var(--gold);stroke-width:1.6;stroke-linecap:round" />
+            <path d="M6 9 L4 15 M6 9 L8 15" style="stroke:var(--sage);stroke-width:1.4;stroke-linecap:round" />
+            <path d="M22 9 L20 15 M22 9 L24 15" style="stroke:var(--sage);stroke-width:1.4;stroke-linecap:round" />
+            <path d="M10 23 H18" style="stroke:var(--gold);stroke-width:1.6;stroke-linecap:round" />
+          </svg>
+          <h3>Assessing AI Biosecurity Risk</h3>
+        </div>
+        <p>Quantifying the benefits and misuse potential of biological AI models. The goal is to calibrate model performance in terms of real-world metrics — time, cost, and effort — to measure how these tools are actually changing biological risk.</p>
       </div>
     </div>
   </div>
@@ -733,3 +757,6 @@
     }
   })();
 </script>
+
+</body>
+</html>
